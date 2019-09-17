@@ -1,13 +1,17 @@
-const { Given, When, Then } = require("cucumber");
-const { expect } = require("chai");
-const puppeteer = require('puppeteer');
+const { Given, When, Then, After, Before } = require("cucumber");
 
-var URL = new Map();
-URL.set("Google", "https://google.com");
+    Before(async function() {
+        return await this.openCatalogPage()
+    })
 
-Given('I am on the {string} homepage', async function (pageURL) {
-    browser = await puppeteer.launch();
-    page = await browser.newPage();
-    await page.goto(URL.get(pageURL));
-    await browser.close();
-  });
+    After(async function() {
+        return await this.closeCatalogPage()
+    })
+
+    Given('the user is on the {string} homepage', function (pageURL) {
+        return this.setTodo(pageURL)
+    })
+
+    When('the user clicks on first Catalog Item', async function(){
+        return this.clickFirstItem()
+    })

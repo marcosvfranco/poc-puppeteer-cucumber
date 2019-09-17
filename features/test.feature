@@ -1,4 +1,5 @@
 Feature: Find the GameSparks Website
  
 Scenario: Search for the website        
-    Given I am on the "Google" homepage
+    Given the user is on the "Catalog" homepage
+    When the user clicks on first Catalog Item
